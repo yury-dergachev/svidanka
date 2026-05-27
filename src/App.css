@@ -1,0 +1,759 @@
+.page-shell {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  box-sizing: border-box;
+}
+
+.card {
+  width: min(100%, 920px);
+  padding: 32px;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 24px 80px rgba(125, 65, 145, 0.18);
+  backdrop-filter: blur(20px);
+  text-align: center;
+}
+
+.step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 94, 143, 0.12);
+  color: #b83280;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.subtitle {
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.hero-copy {
+  margin-top: 32px;
+}
+
+.helper-text {
+  margin-top: 12px;
+  color: #8c5d7f;
+}
+
+.choice-playground {
+  position: relative;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 28px;
+  overflow: hidden;
+}
+
+.choice-playground .primary-button,
+.choice-playground .secondary-button,
+.choice-playground .runaway-placeholder {
+  min-width: 140px;
+  padding: 18px 36px;
+  font-size: 1.06rem;
+}
+
+.primary-button,
+.secondary-button {
+  appearance: none;
+  border: none;
+  border-radius: 999px;
+  padding: 16px 32px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease,
+    background 0.2s ease;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, #ff5e93, #ff8a5b);
+  color: #fff;
+  box-shadow: 0 18px 30px rgba(255, 94, 147, 0.28);
+}
+
+.secondary-button {
+  background: rgba(255, 255, 255, 0.78);
+  color: #7b4a68;
+  border: 1px solid rgba(123, 74, 104, 0.16);
+}
+
+.primary-button:hover,
+.secondary-button:hover {
+  transform: translateY(-2px);
+}
+
+.primary-button:focus-visible,
+.secondary-button:focus-visible,
+.plan-card:focus-visible,
+.quick-option:focus-visible,
+.time-slot-card:focus-visible,
+.input-group input:focus-visible {
+  outline: 3px solid rgba(255, 94, 147, 0.3);
+  outline-offset: 2px;
+}
+
+.primary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+  box-shadow: none;
+}
+
+.runaway-button {
+  position: static;
+}
+
+.runaway-placeholder {
+  display: none;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.runaway-placeholder--visible {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.runaway-button--active {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 24px);
+  transform: translateY(-50%);
+  z-index: 2;
+  will-change: left, top, transform;
+  transition:
+    left 0.24s cubic-bezier(0.22, 1, 0.36, 1),
+    top 0.24s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.runaway-button--panic-a {
+  animation: runaway-panic-a 0.34s cubic-bezier(0.2, 0.9, 0.25, 1) both;
+}
+
+.runaway-button--panic-b {
+  animation: runaway-panic-b 0.34s cubic-bezier(0.2, 0.9, 0.25, 1) both;
+}
+
+@keyframes runaway-panic-a {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  25% {
+    transform: translate3d(-8px, 6px, 0) rotate(-8deg) scale(0.9);
+  }
+
+  60% {
+    transform: translate3d(6px, -5px, 0) rotate(7deg) scale(1.04);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes runaway-panic-b {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  25% {
+    transform: translate3d(8px, -4px, 0) rotate(8deg) scale(0.9);
+  }
+
+  60% {
+    transform: translate3d(-7px, 6px, 0) rotate(-7deg) scale(1.04);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+}
+
+.form-grid {
+  display: grid;
+  gap: 20px;
+  margin-top: 32px;
+}
+
+.schedule-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  gap: 20px;
+  align-items: start;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.datepicker-panel,
+.schedule-side-panel {
+  display: grid;
+  gap: 18px;
+}
+
+.schedule-side-panel {
+  grid-template-columns: 1fr;
+}
+
+.panel-heading {
+  display: grid;
+  gap: 8px;
+  text-align: left;
+}
+
+.datepicker-card {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+  border-radius: 28px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(255, 241, 247, 0.92));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.time-chip-section,
+.selection-tip {
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.84);
+  text-align: left;
+}
+
+.time-slot-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.time-slot-card {
+  appearance: none;
+  display: grid;
+  gap: 4px;
+  padding: 16px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(123, 74, 104, 0.14);
+  background: rgba(255, 255, 255, 0.86);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.time-slot-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 94, 147, 0.34);
+  box-shadow: 0 10px 20px rgba(120, 74, 112, 0.08);
+}
+
+.time-slot-card--selected {
+  background: linear-gradient(135deg, rgba(255, 94, 147, 0.14), rgba(255, 138, 91, 0.14));
+  border-color: rgba(255, 94, 147, 0.45);
+  box-shadow: 0 14px 24px rgba(255, 94, 147, 0.12);
+}
+
+.time-slot-time {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #4d2a44;
+}
+
+.time-slot-card strong {
+  color: #5e3550;
+}
+
+.time-slot-note {
+  color: #856078;
+  font-size: 0.92rem;
+}
+
+.selection-tip strong {
+  color: #4e2a43;
+}
+
+.selection-tip p {
+  line-height: 1.65;
+}
+
+.selection-tip--warning {
+  background: rgba(255, 244, 230, 0.88);
+}
+
+.selection-status {
+  margin-top: 6px;
+  color: #8d5a77;
+  font-size: 0.94rem;
+}
+
+.input-group {
+  display: grid;
+  gap: 10px;
+  text-align: left;
+}
+
+.input-group span {
+  font-weight: 700;
+  color: #51324a;
+}
+
+.input-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(96, 63, 89, 0.16);
+  background: rgba(255, 255, 255, 0.95);
+  font: inherit;
+  color: #3d2337;
+}
+
+.preview-box {
+  display: grid;
+  gap: 8px;
+  padding: 24px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255, 240, 246, 0.92), rgba(255, 247, 232, 0.95));
+  color: #5b3750;
+}
+
+.preview-box strong {
+  font-size: 1.2rem;
+  color: #402337;
+}
+
+.preview-label {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #b83280;
+}
+
+.react-datepicker {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 1.08rem;
+}
+
+.react-datepicker__month-container,
+.react-datepicker__time-container {
+  background: transparent;
+}
+
+.react-datepicker__header {
+  border-bottom: none;
+  background: transparent;
+  padding-top: 12px;
+}
+
+.react-datepicker__current-month {
+  margin-bottom: 14px;
+  color: #4d2a44;
+  font-size: 1.18rem;
+  font-weight: 800;
+}
+
+.react-datepicker__day-name {
+  color: #9f6a88;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.react-datepicker__day,
+.react-datepicker__time-name {
+  color: #5d3951;
+}
+
+.react-datepicker__day,
+.react-datepicker__day-name,
+.react-datepicker__time-name {
+  width: 2.9rem;
+  line-height: 2.9rem;
+  margin: 0.24rem;
+}
+
+.react-datepicker__day:hover,
+.react-datepicker__time-list-item:hover,
+.react-datepicker__navigation:hover *::before {
+  border-color: #ff5e93;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__time-list-item--selected {
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff5e93, #ff8a5b);
+  color: #fff;
+}
+
+.react-datepicker__day--today {
+  font-weight: 800;
+  color: #b83280;
+}
+
+.react-datepicker__day--disabled,
+.react-datepicker__time-list-item--disabled {
+  opacity: 0.35;
+}
+
+.react-datepicker__navigation {
+  top: 20px;
+  width: 2rem;
+  height: 2rem;
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: #9f6a88;
+  border-width: 2px 2px 0 0;
+  height: 11px;
+  width: 11px;
+}
+
+.react-datepicker__time-container {
+  width: 110px;
+  border-left: 1px solid rgba(123, 74, 104, 0.1);
+}
+
+.react-datepicker__time-box {
+  width: 100% !important;
+}
+
+.react-datepicker__time-list {
+  padding: 8px 6px !important;
+}
+
+.react-datepicker__time-list-item {
+  border-radius: 999px;
+  margin-bottom: 6px;
+  color: #5d3951;
+}
+
+.react-datepicker__triangle {
+  display: none;
+}
+
+.action-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 32px;
+}
+
+.plan-card {
+  display: grid;
+  gap: 12px;
+  min-height: 220px;
+  padding: 24px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 234, 244, 0.88));
+  color: #4d2a44;
+  text-align: left;
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 18px 40px rgba(135, 85, 122, 0.12);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.plan-card:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 26px 44px rgba(135, 85, 122, 0.18);
+}
+
+.plan-card strong {
+  font-size: 1.35rem;
+}
+
+.plan-card--selected {
+  border-color: rgba(255, 94, 147, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 26px 44px rgba(255, 94, 147, 0.22);
+}
+
+.plan-emoji {
+  font-size: 2.5rem;
+}
+
+.summary-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 20px;
+  margin-top: 32px;
+  text-align: left;
+}
+
+.summary-page {
+  position: relative;
+  overflow: hidden;
+  padding-top: 18px;
+}
+
+.summary-page .summary-layout,
+.summary-page .action-row {
+  position: relative;
+  z-index: 1;
+}
+
+.falling-hearts {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 300px;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.falling-heart {
+  position: absolute;
+  top: -24px;
+  left: var(--left);
+  font-size: var(--size);
+  color: rgba(255, 94, 147, 0.5);
+  text-shadow: 0 4px 10px rgba(255, 94, 147, 0.12);
+  opacity: 0;
+  animation: falling-heart var(--duration) linear infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes falling-heart {
+  0% {
+    transform: translate3d(0, -8px, 0) rotate(0deg);
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 0.85;
+  }
+
+  100% {
+    transform: translate3d(18px, 320px, 0) rotate(220deg);
+    opacity: 0;
+  }
+}
+
+.summary-card,
+.celebration-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+  padding: 28px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 20px 48px rgba(120, 74, 112, 0.14);
+}
+
+.summary-list {
+  display: grid;
+  gap: 18px;
+  margin: 24px 0 0;
+}
+
+.summary-list div {
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(94, 60, 89, 0.1);
+}
+
+.summary-list div:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.summary-list dt {
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #b83280;
+}
+
+.summary-list dd {
+  margin: 0;
+  color: #48283f;
+  line-height: 1.6;
+}
+
+.celebration-card {
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(180deg, rgba(255, 238, 244, 0.95), rgba(255, 250, 235, 0.94));
+}
+
+.celebration-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 280px;
+  color: #5e3550;
+}
+
+.celebration-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #b83280;
+  margin-bottom: 12px;
+}
+
+.hearts-cloud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.heart {
+  position: absolute;
+  left: var(--left);
+  bottom: -20px;
+  font-size: var(--size);
+  color: rgba(255, 94, 147, 0.78);
+  animation: float-heart 4.4s ease-in infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes float-heart {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.8);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(-10px, -260px, 0) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .page-shell {
+    padding: 20px 14px;
+  }
+
+  .card {
+    padding: 24px 18px;
+    border-radius: 24px;
+  }
+
+  .schedule-layout {
+    grid-template-columns: 1fr;
+    max-width: 760px;
+  }
+
+  .choice-playground {
+    min-height: 240px;
+  }
+
+  .plans-grid,
+  .summary-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-card,
+  .celebration-card {
+    min-height: 280px;
+  }
+
+  .falling-hearts {
+    height: 240px;
+  }
+}
+
+@media (max-width: 560px) {
+  .runaway-button--active {
+    left: calc(50% + 8px);
+  }
+
+  .choice-playground {
+    min-height: 220px;
+    padding-inline: 8px;
+    gap: 12px;
+  }
+
+  .choice-playground .primary-button,
+  .choice-playground .secondary-button,
+  .choice-playground .runaway-placeholder {
+    width: auto;
+    min-width: 124px;
+    padding: 16px 32px;
+    font-size: 1rem;
+  }
+
+  .choice-playground .runaway-button--active {
+    min-width: 124px;
+    padding: 16px 32px;
+    font-size: 1rem;
+  }
+
+  .react-datepicker {
+    font-size: 0.98rem;
+  }
+
+  .react-datepicker__current-month {
+    font-size: 1.05rem;
+  }
+
+  .react-datepicker__day,
+  .react-datepicker__day-name,
+  .react-datepicker__time-name {
+    width: 2.35rem;
+    line-height: 2.35rem;
+    margin: 0.14rem;
+  }
+
+  .time-slot-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .datepicker-card {
+    padding: 10px 4px;
+    overflow-x: auto;
+  }
+
+  .primary-button,
+  .secondary-button {
+    width: 100%;
+  }
+
+  .plan-card {
+    min-height: 180px;
+  }
+}
