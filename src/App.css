@@ -464,6 +464,38 @@
   margin-top: 28px;
 }
 
+.telegram-button {
+  appearance: none;
+  border: none;
+  border-radius: 999px;
+  padding: 16px 32px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #2aabee, #229ed9);
+  box-shadow: 0 18px 30px rgba(34, 158, 217, 0.24);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.telegram-button:hover {
+  transform: translateY(-2px);
+}
+
+.telegram-button:focus-visible {
+  outline: 3px solid rgba(34, 158, 217, 0.28);
+  outline-offset: 2px;
+}
+
+.telegram-helper {
+  margin-top: 14px;
+  color: #7a5570;
+  font-size: 0.95rem;
+}
+
 .plans-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -531,42 +563,6 @@
 .summary-page .action-row {
   position: relative;
   z-index: 1;
-}
-
-.falling-hearts {
-  position: absolute;
-  inset: 0 0 auto;
-  height: 300px;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.falling-heart {
-  position: absolute;
-  top: -24px;
-  left: var(--left);
-  font-size: var(--size);
-  color: rgba(255, 94, 147, 0.5);
-  text-shadow: 0 4px 10px rgba(255, 94, 147, 0.12);
-  opacity: 0;
-  animation: falling-heart var(--duration) linear infinite;
-  animation-delay: var(--delay);
-}
-
-@keyframes falling-heart {
-  0% {
-    transform: translate3d(0, -8px, 0) rotate(0deg);
-    opacity: 0;
-  }
-
-  12% {
-    opacity: 0.85;
-  }
-
-  100% {
-    transform: translate3d(18px, 320px, 0) rotate(220deg);
-    opacity: 0;
-  }
 }
 
 .summary-card,
@@ -691,10 +687,6 @@
   .celebration-card {
     min-height: 280px;
   }
-
-  .falling-hearts {
-    height: 240px;
-  }
 }
 
 @media (max-width: 560px) {
@@ -749,7 +741,8 @@
   }
 
   .primary-button,
-  .secondary-button {
+  .secondary-button,
+  .telegram-button {
     width: 100%;
   }
 

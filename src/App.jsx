@@ -39,7 +39,6 @@ const DATE_OPTIONS = [
 ]
 
 const HEART_POSITIONS = [6, 14, 21, 30, 39, 48, 57, 66, 74, 83, 91]
-const FALLING_HEART_POSITIONS = [4, 11, 18, 27, 36, 44, 53, 62, 71, 79, 88, 95]
 const TIME_SLOT_OPTIONS = [
   { id: 'afternoon', time: '16:30', label: 'После работы', note: 'спокойное начало вечера' },
   { id: 'golden-hour', time: '18:00', label: 'На закате', note: 'идеально для прогулки' },
@@ -574,6 +573,42 @@ function PlanPage({ selectedPlan, onSave }) {
 function SummaryPage({ details, onReset }) {
   const navigate = useNavigate()
   const selectedPlan = useMemo(() => getPlanDetails(details.plan), [details.plan])
+  const telegramMessage = useMemo(
+    () =>
+      [
+        'Я согласна на свидание 💖',
+        '',
+        `📅 Когда: ${formatDate(details.date)}`,
+        `🕖 Во сколько: ${formatTime(details.time)}`,
+        `✨ Формат: ${selectedPlan?.title ?? 'Сюрприз'}`,
+        `💌 План: ${selectedPlan?.description ?? 'Красивый вечер, который точно захочется повторить.'}`,
+        '',
+        'Жду этот вечер ☺️',
+      ].join('\n'),
+    [details.date, details.time, selectedPlan],
+  )
+  
+  const telegramShareUrl = useMemo(
+    () => `https://t.me/share/url?text=${encodeURIComponent(telegramMessage)}`,
+    [telegramMessage],
+  )
+  const handleTelegramShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Планы свидания',
+          text: telegramMessage,
+        })
+        return
+      } catch (error) {
+        if (error?.name === 'AbortError') {
+          return
+        }
+      }
+    }
+
+    window.open(telegramShareUrl, '_blank', 'noopener,noreferrer')
+  }
 
   return (
     <PageShell
@@ -581,94 +616,83 @@ function SummaryPage({ details, onReset }) {
       title="Ура, свидание состоится!"
       subtitle="Осталось только дождаться этого вечера и провести его незабываемо."
     >
-      <div className="summary-page">
-        <div className="falling-hearts" aria-hidden="true">
-          {FALLING_HEART_POSITIONS.map((position, index) => (
-            <span
-              key={`falling-${position}-${index}`}
-              className="falling-heart"
-              style={{
-                '--delay': `${index * 0.4}s`,
-                '--left': `${position}%`,
-                '--size': `${1 + (index % 4) * 0.28}rem`,
-                '--duration': `${5.4 + (index % 3) * 0.7}s`,
-              }}
-            >
-              ❤
-            </span>
-          ))}
+      <div className="summary-layout">
+        <div className="summary-card">
+          <h2>Наш план</h2>
+          <dl className="summary-list">
+            <div>
+              <dt>Когда</dt>
+              <dd>{formatDate(details.date)}</dd>
+            </div>
+            <div>
+              <dt>Во сколько</dt>
+              <dd>{formatTime(details.time)}</dd>
+            </div>
+            <div>
+              <dt>Формат</dt>
+              <dd>{selectedPlan?.title ?? 'Сюрприз'}</dd>
+            </div>
+            <div>
+              <dt>Что нас ждет</dt>
+              <dd>{selectedPlan?.description ?? 'Красивый вечер, который точно захочется повторить.'}</dd>
+            </div>
+          </dl>
         </div>
 
-        <div className="summary-layout">
-          <div className="summary-card">
-            <h2>Наш план</h2>
-            <dl className="summary-list">
-              <div>
-                <dt>Когда</dt>
-                <dd>{formatDate(details.date)}</dd>
-              </div>
-              <div>
-                <dt>Во сколько</dt>
-                <dd>{formatTime(details.time)}</dd>
-              </div>
-              <div>
-                <dt>Формат</dt>
-                <dd>{selectedPlan?.title ?? 'Сюрприз'}</dd>
-              </div>
-              <div>
-                <dt>Что нас ждет</dt>
-                <dd>{selectedPlan?.description ?? 'Красивый вечер, который точно захочется повторить.'}</dd>
-              </div>
-            </dl>
+        <div className="celebration-card">
+          <div className="hearts-cloud" aria-hidden="true">
+            {HEART_POSITIONS.map((position, index) => (
+              <span
+                key={`${position}-${index}`}
+                className="heart"
+                style={{
+                  '--delay': `${index * 0.45}s`,
+                  '--left': `${position}%`,
+                  '--size': `${1 + (index % 3) * 0.35}rem`,
+                }}
+              >
+                ❤
+              </span>
+            ))}
           </div>
 
-          <div className="celebration-card">
-            <div className="hearts-cloud" aria-hidden="true">
-              {HEART_POSITIONS.map((position, index) => (
-                <span
-                  key={`${position}-${index}`}
-                  className="heart"
-                  style={{
-                    '--delay': `${index * 0.45}s`,
-                    '--left': `${position}%`,
-                    '--size': `${1 + (index % 3) * 0.35}rem`,
-                  }}
-                >
-                  ❤
-                </span>
-              ))}
-            </div>
-
-            <div className="celebration-copy">
-              <p className="celebration-title">Я уже рад этому вечеру</p>
-              <p>
-                Спасибо за твое "да". Обещаю много улыбок, легкости и приятных
-                впечатлений.
-              </p>
-            </div>
+          <div className="celebration-copy">
+            <p className="celebration-title">Я уже рад этому вечеру</p>
+            <p>
+              Спасибо за твое "да". Обещаю много улыбок, легкости и приятных
+              впечатлений.
+            </p>
           </div>
-        </div>
-
-        <div className="action-row">
-          <button
-            type="button"
-            className="secondary-button"
-            onClick={() => navigate('/plan')}
-          >
-            Изменить выбор
-          </button>
-          <button
-            type="button"
-            className="primary-button"
-            onClick={() => {
-              onReset()
-              navigate('/')
-            }}
-          >
-            Начать заново
-          </button>
         </div>
       </div>
+
+      <div className="action-row">
+        <button
+          type="button"
+          className="telegram-button"
+          onClick={handleTelegramShare}
+        >
+          Поделиться в Telegram
+        </button>
+        <button
+          type="button"
+          className="secondary-button"
+          onClick={() => navigate('/plan')}
+        >
+          Изменить выбор
+        </button>
+        <button
+          type="button"
+          className="primary-button"
+          onClick={() => {
+            onReset()
+            navigate('/')
+          }}
+        >
+          Начать заново
+        </button>
+      </div>
+
     </PageShell>
   )
 }
