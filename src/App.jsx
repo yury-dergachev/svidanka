@@ -31,6 +31,12 @@ const DATE_OPTIONS = [
     description: 'Вкусная еда, приятная атмосфера и разговоры без спешки.',
   },
   {
+    id: 'motoride',
+    emoji: '🏍️',
+    title: 'Мото-прогулка',
+    description: 'Немного скорости, вечерний город и яркие эмоции, которые точно запомнятся.',
+  },
+  {
     id: 'surprise',
     emoji: '✨',
     title: 'Сюрприз',
@@ -40,11 +46,11 @@ const DATE_OPTIONS = [
 
 const HEART_POSITIONS = [6, 14, 21, 30, 39, 48, 57, 66, 74, 83, 91]
 const TIME_SLOT_OPTIONS = [
-  { id: 'afternoon', time: '16:30', label: 'После работы', note: 'спокойное начало вечера' },
-  { id: 'golden-hour', time: '18:00', label: 'На закате', note: 'идеально для прогулки' },
-  { id: 'classic', time: '19:00', label: 'Классика', note: 'самое удобное время' },
-  { id: 'cozy', time: '20:00', label: 'Уютный вечер', note: 'для ужина или кино' },
-  { id: 'late', time: '21:00', label: 'Позже', note: 'если день загруженный' },
+  { id: 'afternoon', time: '18:30', label: 'После работы', note: 'спокойное начало вечера' },
+  { id: 'golden-hour', time: '19:30', label: 'На закате', note: 'идеально для прогулки' },
+  { id: 'classic', time: '20:30', label: 'Классика', note: 'самое удобное время' },
+  { id: 'cozy', time: '21:30', label: 'Уютный вечер', note: 'для ужина или кино' },
+  { id: 'late', time: '22:00', label: 'Позже', note: 'если день загруженный' },
 ]
 
 registerLocale('ru', ru)
@@ -663,6 +669,7 @@ function SummaryPage({ details, onReset }) {
         </div>
       </div>
 
+      {telegramStatus ? <p className="telegram-helper">{telegramStatus}</p> : null}
       <div className="action-row">
         <button
           type="button"
@@ -696,7 +703,6 @@ function SummaryPage({ details, onReset }) {
           Начать заново
         </button>
       </div>
-      {telegramStatus ? <p className="telegram-helper">{telegramStatus}</p> : null}
 
     </PageShell>
   )
