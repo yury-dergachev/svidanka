@@ -481,6 +481,11 @@
     opacity 0.2s ease;
 }
 
+.telegram-button--copy {
+  background: linear-gradient(135deg, #5b7cfa, #7b5cff);
+  box-shadow: 0 18px 30px rgba(91, 124, 250, 0.24);
+}
+
 .telegram-button:hover {
   transform: translateY(-2px);
 }
@@ -618,6 +623,8 @@
   z-index: 1;
   max-width: 280px;
   color: #5e3550;
+  display: grid;
+  gap: 14px;
 }
 
 .celebration-title {
@@ -625,6 +632,26 @@
   font-weight: 800;
   color: #b83280;
   margin-bottom: 12px;
+}
+
+.telegram-note {
+  display: grid;
+  gap: 8px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(255, 94, 147, 0.16);
+  box-shadow: 0 10px 24px rgba(255, 94, 147, 0.08);
+}
+
+.telegram-note strong {
+  color: #b83280;
+  font-size: 0.98rem;
+}
+
+.telegram-note p {
+  color: #6b4861;
+  line-height: 1.55;
 }
 
 .hearts-cloud {

@@ -573,6 +573,7 @@ function PlanPage({ selectedPlan, onSave }) {
 function SummaryPage({ details, onReset }) {
   const navigate = useNavigate()
   const selectedPlan = useMemo(() => getPlanDetails(details.plan), [details.plan])
+  const [telegramStatus, setTelegramStatus] = useState('')
   const telegramMessage = useMemo(
     () =>
       [
@@ -587,27 +588,19 @@ function SummaryPage({ details, onReset }) {
       ].join('\n'),
     [details.date, details.time, selectedPlan],
   )
-  
-  const telegramShareUrl = useMemo(
-    () => `https://t.me/share/url?text=${encodeURIComponent(telegramMessage)}`,
-    [telegramMessage],
-  )
-  const handleTelegramShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Планы свидания',
-          text: telegramMessage,
-        })
-        return
-      } catch (error) {
-        if (error?.name === 'AbortError') {
-          return
-        }
-      }
-    }
 
-    window.open(telegramShareUrl, '_blank', 'noopener,noreferrer')
+  const handleCopyTelegramText = async () => {
+    try {
+      await navigator.clipboard.writeText(telegramMessage)
+      setTelegramStatus('Текст скопирован. Теперь можно открыть Telegram и вставить сообщение в чат.')
+    } catch {
+      setTelegramStatus('Не получилось скопировать автоматически. Попробуй еще раз.')
+    }
+  }
+
+  const handleOpenTelegram = () => {
+    window.open('https://t.me/killarock', '_blank', 'noopener,noreferrer')
+    setTelegramStatus('Telegram открыт. Если текст уже скопирован, осталось только вставить его и отправить.')
   }
 
   return (
@@ -662,6 +655,10 @@ function SummaryPage({ details, onReset }) {
               Спасибо за твое "да". Обещаю много улыбок, легкости и приятных
               впечатлений.
             </p>
+            <div className="telegram-note">
+              <strong>Как отправить планы мне в Telegram</strong>
+              <p>Сначала нажми "Скопировать текст", потом открой мой Telegram и вставь сообщение в чат.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -669,10 +666,17 @@ function SummaryPage({ details, onReset }) {
       <div className="action-row">
         <button
           type="button"
-          className="telegram-button"
-          onClick={handleTelegramShare}
+          className="telegram-button telegram-button--copy"
+          onClick={handleCopyTelegramText}
         >
-          Поделиться в Telegram
+          Скопировать текст
+        </button>
+        <button
+          type="button"
+          className="telegram-button"
+          onClick={handleOpenTelegram}
+        >
+          Открыть мой Telegram
         </button>
         <button
           type="button"
@@ -692,6 +696,7 @@ function SummaryPage({ details, onReset }) {
           Начать заново
         </button>
       </div>
+      {telegramStatus ? <p className="telegram-helper">{telegramStatus}</p> : null}
 
     </PageShell>
   )
