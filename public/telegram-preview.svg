@@ -1,0 +1,48 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="40" x2="1080" y2="590" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE0EC" />
+      <stop offset="0.5" stop-color="#FFC4D6" />
+      <stop offset="1" stop-color="#FF8FB1" />
+    </linearGradient>
+    <linearGradient id="card" x1="310" y1="150" x2="890" y2="480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFDFC" />
+      <stop offset="1" stop-color="#FFF0F5" />
+    </linearGradient>
+    <filter id="shadow" x="246" y="108" width="708" height="414" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+      <feOffset dy="18" />
+      <feGaussianBlur stdDeviation="22" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0.654902 0 0 0 0 0.196078 0 0 0 0 0.380392 0 0 0 0.18 0" />
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1" />
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape" />
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="145" cy="112" r="72" fill="#FFFFFF" fill-opacity="0.18" />
+  <circle cx="1040" cy="150" r="96" fill="#FFFFFF" fill-opacity="0.16" />
+  <circle cx="1088" cy="504" r="54" fill="#FFFFFF" fill-opacity="0.14" />
+  <circle cx="178" cy="523" r="88" fill="#FFFFFF" fill-opacity="0.12" />
+  <path d="M191 203C205.667 176.333 233.6 171.9 248 188.5C262.4 171.9 290.333 176.333 305 203C319.667 229.667 304.833 263.167 248 303.5C191.167 263.167 176.333 229.667 191 203Z" fill="#FFD7E5" />
+  <path d="M905 109C915 90.6667 934.045 87.6187 943.864 99.0312C953.682 87.6187 972.727 90.6667 982.727 109C992.727 127.333 982.614 150.365 943.864 178.094C905.114 150.365 895 127.333 905 109Z" fill="#FFE7EF" />
+  <g filter="url(#shadow)">
+    <rect x="290" y="134" width="620" height="326" rx="34" fill="url(#card)" />
+    <rect x="290" y="134" width="620" height="326" rx="34" stroke="#F8B6C8" stroke-width="2" />
+  </g>
+  <path d="M420 204H780" stroke="#F6C5D3" stroke-width="2" stroke-linecap="round" />
+  <path d="M420 390H780" stroke="#F6C5D3" stroke-width="2" stroke-linecap="round" />
+  <path d="M599.5 250C617.173 221.618 650.973 216.901 668.393 234.572C685.812 216.901 719.612 221.618 737.286 250C754.959 278.382 737.09 314.024 668.393 356.938C599.696 314.024 581.827 278.382 599.5 250Z" fill="#FF6F91" />
+  <text x="600" y="252" text-anchor="middle" fill="#A33658" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" letter-spacing="3">
+    INVITE
+  </text>
+  <text x="600" y="318" text-anchor="middle" fill="#8E234A" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700">
+    0A ?@83;0H0NB
+  </text>
+  <text x="600" y="384" text-anchor="middle" fill="#8E234A" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700">
+    =0 A2840=85
+  </text>
+  <text x="600" y="430" text-anchor="middle" fill="#B14E73" font-family="Arial, Helvetica, sans-serif" font-size="24">
+    B:@>9B5 AAK;:C 8 ?>A<>B@8B5 45B0;8 ?@83;0H5=8O
+  </text>
+</svg>
